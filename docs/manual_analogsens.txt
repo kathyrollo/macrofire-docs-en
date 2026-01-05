@@ -1,0 +1,51 @@
+MacroFire 3.2.9
+
+## Analog stick sensitivity adjustment
+
+Adjusts the sensitivity of the analog stick.
+It also affects analog stick input during macro recording.
+
+Also, the default values of these settings can be changed via macrofire.ini.
+
+Analog stick movement
+Toggles analog stick input.
+When set to OFF, all input from the analog stick is discarded and it always returns the origin.
+
+Deadzone radius
+Specifies the radius from the origin within which input values are discarded.
+If the analog stick is within this circle, it is always corrected to the origin.
+
+Sensitivity
+Sets the sensitivity.
+The actual movement distance is multiplied by the ratio set here.
+
+Origin X-coordinate
+Specifies the X coordinate to be used as the origin.
+Normally there is no need to change it from 127.
+Even if the stick is loose and does not settle at the center,
+widening the Deadzone is thought to produce better results than adjusting this.
+
+Origin Y-coordinate
+Specifies the Y coordinate to be used as the origin.
+Normally there is no need to change it from 127.
+Even if the stick is loose and does not settle at the center,
+widening the Deadzone is thought to produce better results than adjusting this.
+
+## About the diagram
+
+The overlapping square and circle displayed on the right side of the menu
+represent the movable range of the analog stick, the effective range under the current settings,
+and the current position and the adjusted position.
+
+The outermost white square represents the movable range of the analog stick.
+The red circle inside it represents the Deadzone.
+Analog stick movement within this circle is treated as if it did not exist from the game’s perspective.
+
+The red dot represents the current position of the analog stick.
+The white dot represents the position of the analog stick after adjustment by the Deadzone and Sensitivity,
+that is, the position actually passed to the game.
+
+---
+
+pen@ClassG
+[http://classg.sytes.net](http://classg.sytes.net)

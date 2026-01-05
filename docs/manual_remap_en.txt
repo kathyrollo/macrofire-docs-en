@@ -1,0 +1,73 @@
+MacroFire 3.2.9
+
+## Remap settings
+
+The operation method is slightly different from other settings.
+First, this settings screen has two columns: a list column and a menu column.
+The currently selected column is displayed with a red border.
+Use the L/R buttons to switch columns.
+
+The “Remapping to _________” shown at the bottom indicates
+which button the currently selected entry is being remapped to.
+
+## List column
+
+Remap settings are listed here.
+If no settings exist at all, the following is displayed:
+
+```
+  <Press TRIANGLE(△) to add a new remap>
+```
+
+Press the △ button to set which button to remap.
+For example, let’s say you set the ○ button.
+Then the following entry will appear in the list:
+
+```
+  ○
+```
+
+And at the bottom,
+
+```
+  Remapping to Disable
+```
+
+will be displayed.
+
+This means that the ○ button is not assigned to anything,
+effectively disabling the ○ button.
+
+Next, press the ○ button to set the remapped destination button for this entry.
+Suppose you set the × button.
+Then the bottom display will change as follows:
+
+```
+  Remapping to ×
+```
+
+This indicates that the ○ button is being remapped to the × button.
+
+This is the basic usage.
+To delete an entry, place the cursor on the entry you want to delete and press the □ button.
+
+## Menu column
+
+Load
+Loads remap settings from the memory stick.
+This is not an additive load, so any existing settings will be discarded.
+
+Save
+Saves the current contents of the list column to the memory stick.
+
+Clear
+Deletes all remap settings.
+
+## v2.x.x remap settings files
+
+Cannot be loaded.
+
+---
+
+pen@ClassG
+[http://classg.sytes.net](http://classg.sytes.net)

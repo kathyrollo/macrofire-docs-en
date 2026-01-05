@@ -1,0 +1,153 @@
+MacroFire 3.2.9
+
+## Macro settings
+
+Enables recorded button operations to be executed repeatedly.
+
+Add macro
+Adds a new macro slot.
+
+Remove macro
+Deletes the current macro slot.
+Note that the recorded macro itself will also be deleted.
+
+Macro
+The macro slot number.
+Macros are saved per slot.
+By placing the cursor on this item and pressing the △ button,
+you can assign a name to this macro.
+
+## Preference
+
+```
+Buttons to run/stop the macro
+  Buttons to run/stop the macro without displaying the menu during gameplay.
+  Pressing these buttons while a macro is running will instead stop it.
+
+Number of loop
+  Sets how many times the macro is executed consecutively.
+  0 means infinite loop.
+```
+
+## Control
+
+```
+Run
+  Executes the macro for the number of times specified by Number of loop.
+
+Stop
+  Stops the currently running macro.
+
+Edit
+  Edits the macro.
+  For operations and macro command types, refer to the Edit macro section below.
+
+Clear
+  Clears the recorded macro.
+```
+
+## Realtime recording
+
+```
+Start
+  Starts real-time recording of a macro.
+
+Append
+  Starts real-time recording by appending to the current macro.
+
+Stop
+  Stops macro recording.
+
+Recording analog stick movement (ON/OFF)
+  Toggles whether analog stick movement is recorded during macro recording.
+  This setting can be changed even while recording a macro.
+```
+
+## File
+
+```
+Load
+  Loads a macro file from the memory stick.
+
+Save
+  Saves the currently held macro to the memory stick.
+  Hotkeys and loop count are also recorded.
+```
+
+## Edit macro
+
+Edits the macro in main memory recorded by Start recording.
+Each line is a command to be executed, and the following types exist.
+
+```
+Delay: Pauses execution.
+       Keeps the immediately preceding button state for the specified time.
+       The unit is ms (milliseconds); 1 second equals 1,000 milliseconds.
+       The maximum value is 999,999,999ms (277 hours 46 minutes 39.999 seconds).
+
+Buttons press: Presses buttons.
+               Buttons are pressed by being added to the immediately preceding button state.
+                 Buttons press: ×
+                 Buttons press: ○
+               results in both ○ and × being pressed in the final state.
+
+Buttons release: Releases buttons.
+                 As with Buttons press, the specified buttons are released from the preceding state.
+                   Buttons press  : ○ △
+                   Buttons press  : ×
+                   Buttons release: △
+                 results in both ○ and × being pressed in the final state.
+
+Buttons change: Changes the button state.
+                This command occurs when Buttons press and Buttons release happen at the same time,
+                and it completely changes the button state regardless of the preceding state.
+                  Buttons press  : ○ △
+                  Buttons press  : ×
+                  Buttons release: △
+                  Buttons change : □
+                results in only the □ button being pressed in the final state.
+
+Analog move: Tilts the analog stick.
+             With the top-left as (x,y) = (0,0), moves the analog stick to an arbitrary position.
+
+Rapidfire start: Starts rapid fire.
+                 Sets the button to be rapid-fired in the same way as Buttons press.
+                 PD/RD refers to Press delay/Release delay; for details, see manual_rapidfire.txt.
+
+Rapidfire stop: Stops rapid fire.
+```
+
+In editing, you can change the values of these commands,
+and insert/delete the commands themselves.
+
+All commands except Delay are executed one per frame.
+For example,
+Buttons press: ○ ×
+presses the buttons completely simultaneously, whereas
+Buttons press: ○
+Buttons press: ×
+inputs the buttons sequentially with a one-frame delay.
+Therefore,
+Buttons press: ○
+Buttons release: ○
+when repeated infinitely, behaves like rapid pressing of the ○ button.
+
+However, Delay is handled differently:
+Delay: 500ms
+and
+Delay: 200ms
+Delay: 300ms
+both have exactly the same meaning and wait for the same total amount of time.
+
+Also, even if you try to delete all macros using Delete, they cannot be completely removed.
+Specifically, Delay 0 ms will always remain.
+To completely erase a macro, execute Clear from the macro main menu.
+
+## v2.x.x macro files
+
+Cannot be loaded.
+
+---
+
+pen@ClassG
+[http://classg.sytes.net](http://classg.sytes.net)

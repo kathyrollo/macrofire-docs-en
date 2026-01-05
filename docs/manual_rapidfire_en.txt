@@ -1,0 +1,75 @@
+MacroFire 3.2.9
+
+## Rapidfire settings
+
+You can set a rapid-fire mode for each of the following buttons.
+
+```
+○ button       (Circle)
+× button       (Cross)
+□ button       (Square)
+△ button       (Triangle)
+Directional Up     (Up)
+Directional Right  (Right)
+Directional Down   (Down)
+Directional Left   (Left)
+L button        (L-trig)
+R button        (R-trig)
+Start button    (START)
+Select button   (SELECT)
+```
+
+There are five modes, each having the following meanings.
+
+```
+Normal: Normal operation mode.
+        No rapid fire is performed; key input is passed through exactly as entered by the player.
+
+Rapid: Rapid-fire mode.
+       Rapid fire is performed only while this button is being held down.
+
+Auto-Rapid: Automatic rapid-fire mode.
+            Rapid fire is maintained at all times even if the button is not being pressed.
+
+Hold: Not a rapid-fire mode, but a hold-down mode.
+      Pressing a button set to this toggles between the pressed state and the released state.
+
+Auto-Hold: Not a rapid-fire mode, but a hold-down mode.
+           Keeps this button in a continuously pressed state.
+```
+
+## Wait control
+
+The rapid-fire speed can be controlled to some extent using Release delay / Press delay.
+
+Release delay refers to the time the button remains released,
+and Press delay refers to the time the button remains pressed.
+
+Increasing these times will gradually slow down the rapid-fire speed.
+Due to the specifications, the rapid-fire speed only begins to decrease
+once the delay exceeds the interval at which the game acquires pad data.
+Since most games acquire pad data at the Vsync cycle,
+changes in rapid-fire speed will probably begin to appear around 16ms or 17ms.
+
+In games that acquire pad data at the Vsync cycle, 0ms, 5ms, and 10ms
+will all result in the same rapid-fire speed.
+However, at 18ms, 19ms, and 20ms, the rapid-fire speed will gradually decrease.
+
+Some games appear not to recognize rapid fire that is too fast.
+If buttons do not respond or become extremely sluggish even when rapid fire is set,
+try setting both values to around 17–34ms.
+
+## Save and load
+
+In addition to button rapid-fire settings, the Wait control settings described above are also saved.
+When you find Delay values that allow the fastest rapid fire for a particular game,
+it may be a good idea to save them so you do not forget.
+
+## v2.x.x rapid-fire settings files
+
+Cannot be loaded.
+
+---
+
+pen@ClassG
+[http://classg.sytes.net](http://classg.sytes.net)

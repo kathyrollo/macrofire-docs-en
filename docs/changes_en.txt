@@ -1,0 +1,748 @@
+2011/09/07 - 3.2.9
+
+* Fixed an issue where it did not work in POPS on 6.39/6.60 PRO-B9.
+
+2011/08/20 - 3.2.8
+
+* Fixed an issue where selecting Load on Homebrew would cause a freeze.
+
+2011/08/20 - 3.2.7
+
+* Fixed an issue where MacroFire did not start in POPS and Homebrew.
+
+2011/07/10 - 3.2.6
+
+* Fixed an issue where the game ID could not be obtained correctly in some games.
+
+2010/07/31 - 3.2.5
+
+* Fixed an issue where the RapidfireStart setting value was not correctly restored when loading a macro file.
+
+2010/05/21 - 3.2.4
+
+* Fixed an issue in the analog stick tuning feature where changing the sensitivity even by 1% from 100%
+  caused movement upward from the center to be input as downward, and movement leftward to be input as rightward.
+
+2010/05/18 - 3.2.3
+
+* Fixed an issue where START/SELECT set in macro Buttons press were ignored during playback.
+
+2010/05/05 - 3.2.2
+
+* Fixed an issue where setting values could not be read correctly from macrofire.ini.
+
+2010/05/02 - 3.2.1
+
+* Reduced the memory size used for menu display by half by lowering the color depth to 16-bit when displaying the menu.
+
+* Fixed numerous processes that had a risk of causing MacroFire to freeze.
+  This refers strictly to “MacroFire freezing,” and situations where freezing is caused “by MacroFire” cannot be avoided.
+
+* Restored the startup wait time that had once been removed in 3.1.0.
+
+* The “Loaded” display was abolished.
+  This is because macrofire.ini setting values were changed to be read step by step from multiple sections.
+  See manual_ini.txt for details.
+
+2010/03/15 - 3.2.0
+
+* Enabled reassignment and macro registration for the system HOME button and volume buttons by using a new hooking method.
+  These fully perform their original button roles.
+  For compatibility with other plugins, see “Startup order” in readme.txt.
+
+* Raised the upper limit of analog stick sensitivity from 200% to 400%.
+
+* Fixed an issue where the macro editor was not functioning properly and was only viewable.
+
+* Fixed an issue in the numeric input dialog where lower digits could not be set properly if the highest digit was at the maximum value.
+  For example, in a numeric dialog with a maximum value of 255, if the hundreds digit was set to 2,
+  the ones digit could only be set from 0 to 5.
+  As a result, it was not possible to set values such as 206, 217, 228, 239, where the ones digit is 6 or higher.
+
+* Fixed an issue where setting remote control buttons for Buttons to toggle the engine state did not work.
+
+* Modified macro recording so that buttons pressed to launch the menu are not recorded at the end.
+
+* “MacroFire is not working perfectly.” is no longer displayed.
+
+2010/03/07 - 3.1.0
+
+* Experimentally removed the startup wait time.
+
+* Removed “-” from UMD game IDs. (Example: ULJM-00001 -> ULJM00001)
+
+* Made it possible to obtain game IDs for PS1 games.
+
+* When launching Homebrew, now calculates a hash value from the executable file
+  and uses it as the game ID.
+  (This ID is 8 characters long and consists only of the characters “0123456789ABCDEF”.)
+
+* Removed the [Main] and [AnalogStick] sections from macrofire.ini,
+  and moved all their settings to the [Default] section.
+  All entries in the [Default] section can also be applied to game ID sections.
+
+* Abolished the macrofire.ini setting value “UseVolatileMemory”.
+
+* Renamed the macrofire.ini setting value “UseGraphicsMemory” to “ForcedLowMemoryMode”.
+  Note that the meaning of the setting value is the exact opposite.
+
+* Made it possible to register macros as long as memory allows by dynamically allocating macro storage.
+
+* In addition to the previous automatic detection, the dialog box for button settings
+  now also allows button selection as used in older versions.
+
+* Renamed Engine status notification to Status notification.
+
+* When Status notification is set to ON, in addition to displaying engine state changes,
+  notifications are also displayed when macros are executed or stopped via hotkeys.
+
+2010/01/22 - 3.0.13
+
+* Changed rapid-fire waiting time settings to operate more flexibly.
+  See manual_rapidfire.txt for details.
+
+* Added a confirmation message when clearing macros.
+
+* Fixed an issue where MacroFire was recognized as GAME instead of POPS
+  when it started on the POPS version selection screen of popsloader.
+
+* Attempted to reduce the plugin file size.
+  There was not much effect.
+
+2009/11/30 - 3.0.12
+
+* Fixed an issue where MacroFire did not function at all in POPS.
+
+2009/11/15 - 3.0.11
+
+* Fixed an issue where some games such as Monster Hunter returned 800200D9 and would not start.
+  Test code had been left in……
+
+2009/11/13 - 3.0.10
+
+* Fixed an issue where Auto-Rapid did not function,
+  even though Auto-Rapid and Auto-Hold are supposed to temporarily suspend their behavior
+  while actual PSP buttons are being pressed.
+
+* Modified the MacroFire menu to automatically swap the ○/× buttons (O/X button swap)
+  according to the PSP registry.
+
+2009/09/17 - 3.0.9
+
+* Fixed an issue where the game would stop when switching Status notification from ON to OFF.
+
+2009/09/14 - 3.0.8 (missing number)
+
+* Fixed an issue where Status notification could not be disabled once it was enabled.
+
+* Fixed an issue where the display became incorrect
+  when Status notification was performed after opening the menu at least once.
+
+* Fixed an issue where Remap settings (button reassignment)
+  did not work even when the analog stick was set as the reassignment target.
+
+* Fixed an issue where the screen became severely corrupted
+  when opening or closing the menu while POPS was running.
+
+* Tentatively fixed an issue where, when displaying the menu while running an older POPS version via PopsLoader,
+  the sound that had just been emitted would continue playing throughout menu display.
+
+* When available free memory for menu display was extremely low,
+  added a display of <Low Memory Mode> at the top of the menu.
+  This display method itself existed before, but from this version it explicitly indicates that the mode is active.
+
+* Fixed an issue where analog stick directions were not displayed properly
+  when configuring button settings in Low Memory Mode,
+  making it appear as though they were not set.
+
+2009/09/03 - 3.0.7
+
+* Increased the startup wait time by 2 seconds.
+
+* Fixed an issue where notifications displayed by Status Notification flickered violently.
+
+* Fixed an issue where menu display became incorrect when available memory was low.
+
+* Fixed missing Japanese localization.
+
+2009/09/01 - 3.0.6
+
+* Stopped using compressed PRX files, as they seemed to consume unnecessary resources during load due to decompression.
+
+* Prevented an issue where leaving the menu open for a certain period caused the LCD to remain turned off.
+
+* Adjusted displayed strings.
+
+2009/08/20 - 3.0.5
+
+* Fixed behavior so that when launched from internal flash memory,
+  it searches for ms0:/seplugins/macrofire.ini.
+
+* Made it so that when loading macrofire.ini fails for any reason,
+  “Loaded: Built-in” is displayed at the top of the menu.
+
+* Moved macrofire.ini’s UseVolatileMemory from the [Menu] section to the [Default] section.
+  All entries in the [Default] section can also be applied to game ID sections.
+
+* Added UseGraphicsMemory to macrofire.ini.
+  Despite allocating memory from a location where it should be safe, freezes sometimes occurred.
+  When this option is set to Off, the frame buffer is not allocated and it runs in low-memory mode.
+  However, menu operability worsens.
+
+* Fixed an issue where analog stick settings were not initialized correctly.
+  When macrofire.ini could not be loaded, everything was being initialized to 0.
+
+* Fixed an issue where, when MacroFire displayed its menu in PSPFiler and similar tools,
+  the screen could no longer be updated afterward.
+  The cause was failure to properly restore the frame buffer address after menu display,
+  and depending on the game, this could cause freezing after closing the menu.
+
+* Fixed remaining issues in the process of determining which INI file section to load, which had already been partially fixed in 3.0.4.
+
+* Fixed an issue where Auto-Hold could not be read
+  when loading rapid-fire settings from a file.
+
+* Fixed an issue where rapid-fire mode could not be configured
+  only when a configuration file was set in the Rapidfire entry of macrofire.ini for automatic loading.
+
+2009/08/14 - 3.0.4
+
+* Reduced the size of the MacroFire core by using pspsysclib, which had not been used since BETA3.
+  This may have reduced the likelihood of issues during game loading.
+
+* Fixed an issue where, if a loaded configuration file contained remote control buttons,
+  they were not applied, and the system mistakenly believed buttons were set,
+  resulting in impossible setting values.
+
+* Fixed an issue where loading was performed before determining the section name
+  of the INI file to be loaded.
+
+* Fixed an issue where reading the final setting value failed
+  if macrofire.ini did not end with a newline.
+
+2009/08/12 - 3.0.3
+
+* Adjusted memory handling to reduce fragmentation.
+
+* Changed macro menu behavior so that when starting macro execution or real-time recording,
+  the current MacroFire Engine state is checked.
+  If it is OFF, a message is displayed and the menu returns. (Same behavior as v2.4.1 and earlier)
+
+* When a macro has a name, it is now used as the default file name when saving the macro.
+
+* Enabled setting the HOME button in the following items.
+  However, there are many restrictions, so see the “HOME button restrictions” section in readme.txt.
+  Menu launch button
+  Engine state toggle button
+  Button reassignment settings
+  Macro hotkeys
+  Macro Buttons press / Buttons release / Buttons change / Rapidfire start
+
+* Fixed an issue where selecting Save/Load and reading the file system caused a freeze.
+  The cause was miscounting entries when hidden-attribute files were present in the loaded folder.
+
+* Fixed an issue where saving a macro produced a corrupted file.
+
+* Fixed issues that occurred when loading a macro file
+  that either lacked a [Macro] section or had no entries in that section.
+
+* Fixed an issue where setting macro repeat count to 2 or higher caused infinite repetition.
+
+* Fixed an issue where, when the Delay command appeared two or more times consecutively in a macro,
+  the waiting time from the second occurrence onward became almost zero.
+  This bug also existed in version 2.x.
+
+* Fixed an issue where macro loops could be slightly misaligned compared to the recorded timing.
+
+* Fixed an issue where setting the same hotkey for two or more macros
+  caused all of them to execute simultaneously.
+
+2009/08/11 - 3.0.2
+
+* Changed macrofire.ini to be searched for in the folder where macrofire.prx exists.
+  Since it is no longer hardcoded to ms0:/seplugins,
+  even if macrofire.prx is moved to a location other than seplugins,
+  macrofire.ini will no longer be created only in ms0:/seplugins.
+
+* Fixed an issue where buttons set in macrofire.ini’s ToggleButtons
+  were always recognized as NOTE.
+
+* Fixed an issue where the macro Delay command waited longer than the configured wait time.
+
+2009/08/09 - 3.0.1
+
+* When another program hooks the same API that MacroFire attempts to hook, as with PSP-HUD,
+  and MacroFire seems unable to override it,
+  a message “MacroFire is not working perfectly.” is now displayed on the menu screen.
+  Even if this message is displayed, it may still work correctly in some cases,
+  but in most cases it is safe to assume it will not work.
+
+2009/08/08 - 3.0.0
+
+* Rewrote almost all of the code.
+
+* Changed many data items previously held as static variables
+  to be allocated from the heap when needed.
+  Memory usage while the menu is displayed increased,
+  but memory usage when it is not displayed decreased.
+  This may have reduced the likelihood of interfering with games.
+
+* Changed startup behavior to wait up to about 10 seconds before starting.
+  This may have reduced the likelihood of issues during game loading.
+
+* Made minor font adjustments.
+
+* Completely revamped dialogs.
+  Note that the dialog for setting button combinations has been significantly changed.
+
+* Changed basic menu operations.
+  This was unavoidable in order to display the menu in multiple columns.
+  Previously, options and values were changed using left/right on the D-pad,
+  but these operations are now performed with the ○ and □ buttons.
+  (Operation returned to something similar to pre-BETA3 behavior.)
+
+* Menu items that are unusable or meaningless at that time
+  are now grayed out (not selectable).
+
+* Added support for remote control buttons.
+
+* Made it possible to display a message on the screen when toggling the MacroFire Engine ON/OFF.
+
+* Set the default values of Press delay / Release delay in rapid-fire settings to 0.
+  Previously, setting them to 0 caused strange behavior in POPS,
+  but this appears to have been a MacroFire issue rather than a game-side limitation.
+  It is unclear exactly how it was resolved, but rapid-fire now works even with 0.
+
+* Made it possible to name macros.
+  Focus the macro slot selection item and press the △ button to set the name.
+
+* Made it possible to set macro repeat counts as explicit numbers.
+
+* When saving macros, now saves the name, hotkey, and repeat count as information.
+
+* Enabled real-time appending to macros.
+
+* Modified real-time macro recording so that recording does not start
+  until some recordable button is pressed.
+  There is no longer a need to delete unnecessary Delay at the beginning of already recorded macros.
+
+* Made it possible to change the following configuration files loaded at startup per game ID:
+  Button reassignment settings
+  Rapid-fire settings
+  Macros 1–10
+  Along with this change, the “Remap,” “Rapidfire,” and “Macro” sections were abolished.
+  See manual_ini.txt for details.
+
+* Changed configuration file loading to check the signature at an early stage.
+  Previously, accidentally loading a huge file would cause it to wait indefinitely
+  until memory was exhausted or loading completed,
+  but now an error is returned immediately.
+
+* Accelerated file loading and saving.
+
+2009/01/05 - 2.4.1
+
+* Added new sections “AlternativeButtons,” “Remap,” “Rapidfire,” and “Macro” to macrofire.ini.
+  See manual_ini.txt for details.
+
+* Added a new Analog stick movement option to the analog stick tuning menu.
+  When set to OFF, analog stick input can be disabled.
+
+* Fixed an error in the calculation formula used for Deadzone detection
+  in analog stick tuning.
+  A wider range than specified had been incorrectly disabled.
+
+* Along with the formula correction, raised the upper limit of Deadzone radius
+  in analog stick tuning to 182.
+
+* Added diagrams to visually understand
+  the analog stick movable range, disabled range,
+  current position, and adjusted position.
+
+2008/12/21 - 2.4.0
+
+* Implemented button reassignment functionality.
+
+* Changed configuration files to be case-insensitive for alphabet letters.
+
+* Changed the macro file format.
+  Macros from v2.3.4 and earlier can no longer be loaded.
+
+2008/11/27 - 2.3.4
+
+* Switched hooking back to a custom implementation after using the M33 SDK in v2.3.2.
+  The reasoning is unclear, but this appears to have eliminated conflicts with PSP-HUD.
+
+* Modified behavior to obtain the execution mode of threads
+  that triggered system call exceptions,
+  returning more accurate button states.
+
+* Fixed an issue where the menu could no longer be closed with the HOME button.
+
+2008/10/30 - 2.3.3
+
+* When insufficient memory prevented allocating a frame buffer,
+  enabled menu display using the current screen.
+  In this case, the screen may flicker or some messages may not be displayed,
+  but it is better than being unable to display the menu.
+
+* Fixed an issue where attempting Save/Load while the memory stick access lamp was blinking
+  caused the system to become unresponsive.
+  However, in this state, due to PSP specifications(?),
+  the memory stick cannot be accessed,
+  so a message indicating access failure is displayed.
+
+* Fixed an issue where AnalogUp / AnalogRight / AnalogDown / AnalogLeft
+  did not work in the settings for
+  “Buttons to launch the menu” and “Buttons to toggle the engine state”.
+
+* Fixed an issue where, in macro “Buttons to run the macro,”
+  the analog stick and some buttons were not judged correctly.
+
+2008/10/22 - 2.3.2
+
+* Changed hooking to use the M33 SDK.
+
+* Enabled operation in VSH.
+  However, for now, rapid-fire and macros are restricted
+  in the “Internet Browser”,
+  effectively limiting functionality to analog stick sensitivity adjustment only.
+  This measure was taken due to concerns that these features
+  could be used for attack-like behavior against other sites.
+  In the future, restrictions may be relaxed while implementing countermeasures.
+
+* Fixed an issue where the macro Delay command waited one frame (about 18 ms)
+  longer than the configured wait time.
+  This bug likely exists in all past versions.
+
+2008/10/20 - 2.3.1
+
+* Fixed an issue where recording analog stick movement in macro recording
+  inserted unnecessary “Buttons press / Buttons release”
+  before and after “Analog move”.
+
+* Fixed an issue where attempting to change values with left/right on the D-pad
+  caused values to become 0
+  in all items of the analog stick tuning feature.
+
+2008/10/19 - 2.3.0
+
+* Implemented a feature to hold multiple macros
+  and execute them with arbitrary configured buttons
+  without displaying the menu.
+
+* Fixed behavior so that the frame buffer is allocated from memory
+  that can be used safely.
+  This may have made it possible to correctly display the menu
+  even in software that previously froze when opening or closing the menu.
+
+* Fixed an issue where calling the menu
+  while the game had not set up the screen or frame buffer
+  caused a freeze.
+
+2008/09/27 - 2.2.2
+
+* Fixed an issue where macro and rapid-fire configuration file save/load
+  could not handle files located deeper than the root folder (ms0:/).
+
+2008/09/27 - 2.2.1
+
+* Fixed an issue where, during recording of Buttons press / Buttons release,
+  if buttons to press/release were added at intervals so short
+  that no Delay was inserted between them,
+  the first event disappeared and only one button was recorded as a result.
+
+* Fixed a recurrence of a bug from 2.0.0
+  where starting macro recording while buttons were already pressed
+  caused a freeze immediately upon returning to the game.
+
+2008/09/23 - 2.2.0
+
+* Added a new mode “HOLD” to Rapidfire settings.
+  Unlike AUTO-HOLD, pressing the button toggles
+  between pressed and not pressed states.
+
+* Fixed an issue where Buttons release was not recorded at all
+  when recording macros.
+
+2008/08/29 - 2.1.0
+
+* Added Rapidfire Start / Rapidfire stop to macro commands.
+
+* Changed Press delay / Release delay in rapid-fire settings
+  to be specified in ms (milliseconds).
+  However, essentially nothing has changed,
+  so see manual_rapidfire.txt.
+
+* Modified AUTO-RAPID and AUTO-HOLD so that
+  if actual PSP buttons are pressed, their operation is temporarily stopped.
+  If a button set to AUTO-RAPID is pressed, rapid-fire stops,
+  and if a button set to AUTO-HOLD is pressed, the held state is released.
+
+* Renamed two home menu items.
+  "MacroFire toggle buttons"          -> "Buttons to toggle the engine state"
+  "Analog stick sensitivity settings" -> "Tuning the analog stick sensitivity"
+
+* Added “Buttons to launch the menu” to the home menu.
+  The menu launch button can now be changed from the menu.
+  However, it is not saved, so to change the default value,
+  macrofire.ini must still be edited as before.
+
+* Enabled setting the analog stick as the menu launch button
+  and engine state toggle button.
+  Arbitrary coordinates cannot be specified,
+  but up/down/left/right of the analog stick can be set.
+
+* Added the following to the INI file “button definitions (see pref_manual.txt)”:
+  ANALOGUP ANALOGRIGHT ANALOGDOWN ANALOGLEFT
+
+* Fixed an issue where, after executing “(old) MacroFire toggle buttons” at least once,
+  executing ButtonsPress / ButtonsRelease / ButtonsChange in the macro editor
+  caused buttons that should not be configurable, such as volume buttons, to appear.
+
+2008/08/20 - 2.0.1
+
+* Slightly improved speed by using the DMA controller via sceDmacMemcpy()
+  for background transfer.
+
+* Improved speed by transferring display/draw buffers and background within VRAM.
+  By placing them in VRAM, it became possible to display the menu
+  even when extended kernel memory could not be allocated.
+
+* Changed extended kernel memory allocation to use
+  scePowerVolatileMemTryLock() / scePowerVolatileMemUnlock().
+  Previously, mysterious freezes occurred on Unlock,
+  but this time it worked without particular issues.
+  Perhaps something had been done incorrectly before……
+
+* Made key repeat behavior more natural.
+  Previously, when “slow key repeat” occurred twice in succession,
+  it switched to “fast key repeat” from the third time,
+  but now it switches to “fast key repeat” from the second occurrence.
+
+* Fixed a memory leak in the file selection dialog.
+  After opening the dialog, canceling with the × button
+  consumed 512 bytes of memory each time.
+
+2008/08/16 - 2.0.0
+
+* Implemented analog stick sensitivity adjustment functionality.
+
+* Changed behavior so that key repeat occurs
+  in various situations such as D-pad operation on the menu screen
+  and confirmation buttons during file name input.
+  Holding down the D-pad causes the cursor to keep moving.
+
+* Changed screen rendering to a double-buffering method.
+  This enabled smooth screen updates and transparency via alpha blending.
+  In exchange, basic memory usage and speed were somewhat sacrificed.
+  A notable example is that the menu cannot be displayed
+  on game save/load screens because memory cannot be allocated.
+  This is because buffers are allocated from kernel memory,
+  and there is currently no solution.
+  (This was solved by placing them in VRAM.)
+
+* Changed the format of basic configuration files,
+  rapid-fire configuration files, and macro files to INI format.
+  This made direct editing with a text editor easier.
+
+* Changed numeric input items so that pressing left/right
+  directly decreases/increases the value.
+
+* Abolished the 3-second countdown at the start of macro recording.
+  This was a barrier to prevent menu-side operations
+  from affecting the game side,
+  but from this version onward,
+  a short mandatory pause is applied when exiting the menu,
+  making the countdown unnecessary.
+
+* Removed “Create macro” from the macro menu.
+  When “Edit macro” is executed while the macro is cleared,
+  it is created automatically.
+
+* Significantly changed how the macro editor is operated.
+  Menu display was minimized,
+  and various actions are performed depending on the buttons pressed.
+
+* Removed “Analog neutral” from macro commands.
+  Use Analog move 128,128 instead.
+
+* Fixed an issue where deleting the first command
+  when only two command lines remained
+  caused a freeze in the macro editor.
+
+* Fixed an issue where starting macro recording
+  while holding down buttons already being recorded,
+  or while buttons with AUTO-HOLD set via rapid-fire settings existed,
+  caused a freeze immediately upon returning to the game.
+
+2008/07/24 - 1.2.0
+
+* Implemented a feature to read some basic settings
+  from a file as default settings.
+
+* Fixed an issue where attempting to load macro or rapid-fire configuration files
+  without a signature or with non-existent file names
+  caused a memory leak.
+
+2008/07/19 - 1.1.3
+
+* Fixed an issue where setting MacroFire toggle buttons
+  prevented the menu from being displayed
+  until the game was restarted.
+
+2008/07/16 - 1.1.2
+
+* Fixed an issue when multiple buttons were set
+  for MacroFire toggle buttons.
+  When configured to toggle using a combination of multiple buttons,
+  toggling was supposed to occur only when all of those buttons were pressed,
+  but in reality, toggling occurred when any one of the configured buttons was pressed.
+
+2008/07/12 - 1.1.1
+
+* Fixed an issue where AUTO-HOLD did not function
+  when Release Delay was 1 or higher
+  in Rapidfire settings.
+
+* Fixed issues where Release Delay / Pressed Delay
+  behaved incorrectly in Rapidfire settings.
+
+* Modified sceCtrl*Latch-related functions
+  to return more normal values.
+
+2008/07/11 - 1.1.0
+
+* Implemented saving and loading of rapid-fire settings.
+
+* Fixed reduced rapid-fire speed.
+
+* Fixed an issue where, in the macro editor,
+  performing operations on the final remaining “Delay 0 ms”
+  after deleting everything
+  caused a freeze.
+
+* Fixed an issue where deleting the first macro
+  prevented subsequent macros from being deleted.
+
+* Changed the initial values of Released delay and Pressed delay
+  in Rapidfire settings to 2.
+
+* Made saved macro files and rapid-fire configuration files
+  write a signature.
+
+2008/07/08 - 1.0.0
+
+* Implemented saving and loading of macros.
+
+* Fixed an issue where performing Edit data on Buttons change
+  during macro editing resulted in nothing happening.
+
+* Changed focus movement and scrolling behavior
+  in menus and the macro editor.
+
+* Modified sceCtrl*Latch functions
+  to return somewhat normal values.
+  This appears to have enabled some degree of operation
+  even in POPS (PS1 emulator).
+
+* Added Released delay and Pressed delay
+  to the Rapidfire settings menu.
+  This made it possible to control rapid-fire intervals to some extent.
+
+2008/05/18 - BETA5
+
+* Added the Create macro command to the macro menu.
+  This allows creation of basic macro data
+  without recording a macro.
+
+* Fixed an issue where attempting to insert a new command
+  before the first command during macro editing
+  (executing Insert before on macro command number 001)
+  caused a freeze.
+
+* Changed behavior when turning MacroFire Engine OFF
+  while a macro was running.
+  Previously, if it was turned OFF during execution
+  and then turned ON again without executing Stop macro,
+  the macro would resume from the command where it stopped,
+  i.e., from the middle.
+  Since this is rarely useful,
+  it was changed to always restart from the beginning.
+  This allows pseudo-fast ON/OFF of macros
+  using MacroFire Toggle Buttons.
+
+2008/05/09 - BETA4
+
+* Changed basic menu operations.
+  Previously, options were changed with the ○ button,
+  but now switching with left/right on the D-pad is the basic method,
+  and the ○ button is used for confirming items and input.
+
+* Made it possible to operate MacroFire Engine in-game
+  without displaying the menu.
+
+* Added an option to record analog stick movement in macros.
+
+2008/05/05 - BETA3
+
+* Changed the C standard library from lightweight sysclib to newlib.
+  The file size increased significantly.
+  The impact is unknown.
+
+* Fixed an issue where the pause time editing screen
+  in the macro editing feature was corrupted.
+
+* Fixed an issue where setting a large pause time
+  in macro editing caused it to be displayed as a negative value.
+
+* Changed the unit of pause time
+  from microseconds to milliseconds.
+  As a result, excluding 0, the minimum and maximum wait times are as follows.
+  Minimum 1 ms = 0.001 seconds
+  Maximum 999,999,999 ms = 277 hours 46 minutes 39.999 seconds
+
+* Made it so that the current value
+  is set as the initial value when editing.
+
+* Tentatively fixed an issue where,
+  when returning to the game after leaving the menu open for a certain period,
+  the LCD (screen) power remained off.
+  This is not guaranteed,
+  so if the screen is still off,
+  try pressing the brightness change button.
+
+* Tried tightening character spacing.
+
+2008/04/25 - BETA2
+
+* Implemented macro editing functionality.
+
+* Fixed an issue where,
+  if the final command was a pause when recording a macro,
+  the pause time was always recorded as 0.
+  Now the pause time is recorded correctly
+  even if the last command is a pause.
+
+* Changed the comparison basis for macro pause time
+  from frame count to time in microseconds.
+  This allows correct pausing
+  even in homebrew that does not wait for vertical sync.
+
+* Fixed flickering of some text on the menu screen.
+
+* Changed the display of some buttons to symbols.
+
+* Fixed (or so it seemed) an issue where,
+  if buttons were held down during the countdown at the start of macro recording,
+  the game froze immediately upon returning.
+  (This was just a misunderstanding—it was not fixed!!)
+
+2008/04/19 - BETA
+
+* Public release
+
+---
+
+pen@ClassG
+[http://classg.sytes.net](http://classg.sytes.net)

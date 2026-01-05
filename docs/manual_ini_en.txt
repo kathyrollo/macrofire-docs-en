@@ -1,0 +1,328 @@
+MacroFire 3.2.9
+
+# Table of contents
+
+* How to write the configuration file
+* About button settings
+* macrofire.ini search path
+* How to switch the configuration file loaded at startup for each game
+* Supplementary loading of configuration values
+* Section names and order searched for configuration value supplementation
+* Settings
+
+  * [Default] section
+  * [AlternativeButtons] section
+
+=================================================
+
+## How to write the configuration file
+
+The configuration file has one setting per line,
+and each line is written in the following format.
+
+```
+SettingName = SettingValue
+```
+
+All whitespace before and after the setting name and setting value is ignored.
+
+These settings are further managed separately by section.
+A line enclosed by "[" and "]" indicates the start of a section.
+
+This is the same format as INI files used on Windows.
+Therefore, any characters after ";" are treated as comments.
+
+## About button settings
+
+The contents of setting values vary depending on the setting,
+but in addition to simple numbers and ON/OFF, one commonly used type is button settings.
+These are used when configuring combinations of buttons.
+
+Each button corresponds to the names in the table below,
+and these names are listed singly or connected by "+" to list multiple buttons.
+Uppercase and lowercase letters are not distinguished.
+
+```
+  ------------------------
+  Button name | Button
+  ------------------------
+  Select      | Select button
+  Start       | Start button
+  Up          | D-pad up
+  Right       | D-pad right
+  Down        | D-pad down
+  Left        | D-pad left
+  LTrigger    | L button
+  RTrigger    | R button
+  Triangle    | △ button
+  Circle      | ○ button
+  Cross       | × button
+  Square      | □ button
+  HOME        | HOME button
+  NOTE        | ♪ button
+  SCREEN      | Brightness change button
+  VolUp       | Volume + button
+  VolDown     | Volume - button
+  AnalogUp    | Analog stick upward direction
+  AnalogRight | Analog stick rightward direction
+  AnalogDown  | Analog stick downward direction
+  AnalogLeft  | Analog stick leftward direction
+  RPlayPause  | Remote control play/pause button
+  RForward    | Remote control fast-forward button
+  RBack       | Remote control rewind button
+  RVolUp      | Remote control volume + button
+  RVolDown    | Remote control volume - button
+  ------------------------
+```
+
+For example, to set simultaneous pressing of the Start button and Select button,
+
+```
+  Start + Select
+```
+
+is written as shown above.
+Also, when setting just a single button, for example only the ♪ button,
+
+```
+  NOTE
+```
+
+simply write only the name.
+
+Incidentally, although it is unlikely anyone would do so,
+
+```
+  Left + Right
+  Up + Down
+  Up + Right + Down + Left
+```
+
+such settings are also possible.
+However, normally the PSP directional buttons cannot press a direction and its opposite at the same time,
+so these have no meaning.
+
+Moreover, if such a setting is used as the menu launch button,
+you will be unable to display the menu during that time, so please be careful.
+MacroFire does not correct such impossible setting values.
+
+## macrofire.ini search path
+
+Normally, macrofire.ini is searched for in the same folder as macrofire.prx,
+but as an exception, only when macrofire.prx is launched from internal flash memory,
+
+```
+ms0:/seplugins/macrofire.ini
+```
+
+is always searched for.
+
+## How to switch the configuration file loaded at startup for each game
+
+Write a section name with the game ID in macrofire.ini, and write the settings there.
+For example, as follows:
+
+```
+  [ULJM05325]
+  Startup = On
+  MenuButtons = VolUp + VolDown
+  ToggleButtons = NOTE
+  StatusNotification = Off
+  AnalogStickMovement = On
+  AnalogStickDeadzone = 40
+  AnalogStickSensitivity = 100
+  AnalogStickOriginX = 127
+  AnalogStickOriginY = 127
+  ForcedLowMemoryMode = Off
+  Remap = ms0:/macrofire/remap/analog_to_dpad.ini
+  Rapidfire = ms0:/macrofire/rapidfire/SOSE.ini
+  Macro1 = ms0:/macrofire/macro/SOSE/auto_creation_shippitsu.ini
+  Macro2 = ms0:/macrofire/macro/SOSE/auto_creation_art.ini
+```
+
+By setting it this way,
+these settings will be used only when launching the game with game ID ULJM-05325.
+
+This game ID is displayed at the very top
+when you display the MacroFire menu while the game is running.
+
+The entries that can be written are the same as those in the [Default] section.
+
+## Supplementary loading of configuration values
+
+If not all required configuration values are written in the section to be loaded,
+MacroFire supplements those values from lower-priority sections.
+For example,
+
+```
+  [ULJM05325]
+  Startup = On
+  StatusNotification = On
+```
+
+If set like this, the many other settings such as analog stick settings
+are supplemented in order from the following sections.
+
+```
+  [ULJM05325]
+    ↓
+  [GAME]
+    ↓
+  [Default]
+```
+
+For configuration values that never appear even up to the [Default] section,
+so-called “missing settings,”
+MacroFire uses internally held initial values.
+
+## Section names and order searched for configuration value supplementation
+
+XMB:
+[VSH] -> [Default]
+
+POPS:
+[<Game ID (such as SLPS10000)>] -> [POPS] -> [Default]
+
+GAME (UMD):
+[<Game ID (such as ULJM10000)>] -> [GAME] -> [Default]
+
+GAME (homebrew):
+[<8-character ID (part of a hash value calculated from the homebrew executable file)>] -> [GAME] -> [Default]
+
+## Settings
+
+Introduces the configurable setting names, setting values, and their details.
+
+## [Default] section
+
+```
+Startup
+  Setting value: On | Off
+
+  Sets whether to enable the MacroFire Engine at startup.
+    OFF : Do not enable at startup.
+    ON  : Enable at startup.
+
+MenuButtons
+  Setting value: Button setting
+
+  Sets the default Buttons to launch the menu.
+  See readme.txt for details.
+
+ToggleButtons
+  Setting value: Button setting
+
+  Sets the default Buttons to toggle the engine state.
+  See readme.txt for details.
+
+StatusNotification
+  Setting value: On | Off
+
+  Sets the default Status notification.
+  See readme.txt for details.
+
+AnalogStickMovement
+  Setting value: On | Off
+
+  Sets the default Analog stick movement.
+  See manual_analogsens.txt for details.
+
+AnalogStickDeadzone
+  Setting value: Numeric value from 0 to 182
+
+  Sets the default Deadzone radius.
+  See manual_analogsens.txt for details.
+
+AnalogStickSensitivity
+  Setting value: Numeric value from 0 to 200
+
+  Sets the default Sensitivity.
+  See manual_analogsens.txt for details.
+
+AnalogStickOriginX
+  Setting value: Numeric value from 0 to 255
+
+  Sets the default Origin X-coordinate.
+  See manual_analogsens.txt for details.
+
+AnalogStickOriginY
+  Setting value: Numeric value from 0 to 255
+
+  Sets the default Origin Y-coordinate.
+  See manual_analogsens.txt for details.
+
+ForcedLowMemoryMode
+  Setting value: On | Off
+
+  Prohibits allocation of a frame buffer for menu display.
+  Forces “Low Memory Mode,” which normally becomes enabled automatically when memory is low.
+  The frame buffer is allocated from memory that should be safe to use, so in most cases there should be no problem even if this is Off,
+  but it seems there are rare cases where some software freezes when displaying or exiting the menu,
+  and in such cases setting this to On may resolve the issue.
+  However, operability within the menu will be reduced.
+
+Remap
+  Setting value: File path (ms0:/...)
+
+  Specifies the button remapping configuration file to be loaded at startup.
+  Please specify the full path starting from “ms0:/”.
+
+Rapidfire
+  Setting value: File path (ms0:/...)
+
+  Specifies the rapid-fire configuration file to be loaded at startup.
+  Please specify the full path starting from “ms0:/”.
+
+Macro1
+  Setting value: File path (ms0:/...)
+
+  Specifies the macro file to be loaded at startup.
+  Please specify the full path starting from “ms0:/”.
+
+  This setting value can be set in any number by increasing the number as Macro2, Macro3, ...
+  However, the numbers must be consecutive.
+  For example,
+      Macro1 = ms0:/...
+      Macro2 = ms0:/...
+      Macro3 = ms0:/...
+      Macro5 = ms0:/...
+  If set like this,
+  because Macro4 does not exist, MacroFire mistakenly recognizes that settings exist only up to Macro3 and Macro5 will not be loaded.
+```
+
+## [AlternativeButtons] section
+
+```
+Select
+Start
+Up
+Right
+Down
+Left
+Ltrigger
+Rtrigger
+Triangle
+Circle
+Cross
+Square
+Home
+  Setting value: Button setting
+
+  These are alternative button settings that function only within the MacroFire menu.
+  Their primary purpose is to cover broken buttons.
+  By making it possible to operate the menu with these settings, Remap settings can be performed.
+
+  Set alternative buttons for the above buttons.
+  If the setting value is empty, no alternative button is set, and the button corresponding to the button name is used as-is.
+
+  For example, if you want to set an alternative button for the Start button
+  due to reasons such as the Start button being broken and unresponsive,
+  set only the Start entry to the combination of buttons you want to use as the alternative button.
+
+    Start = LTrigger + RTrigger + Select
+```
+
+---
+
+pen@ClassG
+[http://classg.sytes.net](http://classg.sytes.net)
